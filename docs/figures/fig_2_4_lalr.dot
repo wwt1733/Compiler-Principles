@@ -1,0 +1,30 @@
+digraph G {
+  graph [rankdir=TB, fontname="SimHei", fontsize=12, nodesep=0.38, ranksep=0.42,
+         margin=0.16, bgcolor="white", pad=0.15];
+  node  [fontname="SimHei", fontsize=11, penwidth=1.1, color="#333333"];
+  edge  [fontname="SimHei", fontsize=10, penwidth=1.1, color="#333333",
+         arrowsize=0.75, labeldistance=1.7];
+  s [label="开始", shape=box, style="rounded,filled", fillcolor="#E8F0FE"];
+  a [label="以 I0 = closure({ [S'\n -> ·S, $] }) 开始", shape=box];
+  b [label="闭包传播：对 [A -> α·Bβ, a\n]，对 FIRST(βa) 中每个 b \n加入 [B -> ·γ, b]", shape=box];
+  c [label="求 GOTO(I, X)：对每个 [A \n-> α·Xβ, a] 得到 [A ->\n αX·β, a]，再求闭包", shape=box];
+  d [label="新建 LR(1) 项目集并入队", shape=box];
+  e [label="还有未处理 LR(1) 项目集？", shape=diamond, style="filled", fillcolor="#FFF4E0"];
+  f [label="合并“同心集”：核心项目（去掉向前看串）\n相同的集合合并为一个 LALR(1) 状\n态", shape=box];
+  g [label="合并后向前看符号取并集；若并集改变需重新\n传播到不动点", shape=box];
+  h [label="按合并结果重写状态转移表", shape=box];
+  i [label="LALR(1) 项目集族（与 LR(1)\n 对照展示）+ 转移表", shape=parallelogram, style="filled", fillcolor="#EDF7ED"];
+  end [label="结束", shape=box, style="rounded,filled", fillcolor="#E8F0FE"];
+  s -> a;
+  a -> b;
+  b -> c;
+  c -> d;
+  d -> e;
+  e -> c [label="是"];
+  e -> f [label="否"];
+  f -> g;
+  g -> h;
+  h -> i;
+  i -> end;
+  graph [dpi=200];
+}

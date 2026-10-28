@@ -1,0 +1,35 @@
+digraph G {
+  graph [rankdir=TB, fontname="SimHei", fontsize=12, nodesep=0.38, ranksep=0.42,
+         margin=0.16, bgcolor="white", pad=0.15];
+  node  [fontname="SimHei", fontsize=11, penwidth=1.1, color="#333333"];
+  edge  [fontname="SimHei", fontsize=10, penwidth=1.1, color="#333333",
+         arrowsize=0.75, labeldistance=1.7];
+  s [label="开始", shape=box, style="rounded,filled", fillcolor="#E8F0FE"];
+  a [label="取出最小化 DFA 的状态转换表与字符类\n字母表", shape=box];
+  b [label="按选择的方法生成骨架：方法一 Judge\nchar/GetNext/GetToke\nn\n或方法二 switch(state)", shape=box];
+  c [label="为每个字符类生成 charIndex()\n：按区间判定返回类下标", shape=box];
+  d [label="生成识别循环：读字符 → charInd\nex → 查转移 → 更新 state", shape=box];
+  e [label="进入死状态且上次处于接受态？", shape=diamond, style="filled", fillcolor="#FFF4E0"];
+  f [label="回退到最后一个接受状态的位置（最长匹配）", shape=box];
+  g [label="按该状态携带的编码输出 <code> <\nvalue>；\n注释规则不输出；ID 加双引号", shape=box];
+  h [label="识别关键字：查关键字表把 ID 改写为关\n键字编码", shape=box];
+  i [label="还有输入字符？", shape=diamond, style="filled", fillcolor="#FFF4E0"];
+  j [label="输出一行 EOF；关闭输出文件", shape=parallelogram, style="filled", fillcolor="#EDF7ED"];
+  k [label="生成的 C++ 源程序经 g++ 编译为\n可执行文件", shape=box];
+  end [label="结束", shape=box, style="rounded,filled", fillcolor="#E8F0FE"];
+  s -> a;
+  a -> b;
+  b -> c;
+  c -> d;
+  d -> e;
+  e -> f [label="是"];
+  e -> g [label="否：按当前接受态输出"];
+  f -> g;
+  g -> h;
+  h -> i;
+  i -> d [label="是"];
+  i -> j [label="否"];
+  j -> k;
+  k -> end;
+  graph [dpi=200];
+}

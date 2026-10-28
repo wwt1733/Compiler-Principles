@@ -1,0 +1,27 @@
+digraph G {
+  graph [rankdir=TB, fontname="SimHei", fontsize=12, nodesep=0.38, ranksep=0.42,
+         margin=0.16, bgcolor="white", pad=0.15];
+  node  [fontname="SimHei", fontsize=11, penwidth=1.1, color="#333333"];
+  edge  [fontname="SimHei", fontsize=10, penwidth=1.1, color="#333333",
+         arrowsize=0.75, labeldistance=1.7];
+  n0 [label="开始", shape=box, style="rounded,filled", fillcolor="#E8F0FE"];
+  n1 [label="First(X) 置空；若 X 是终结符\n则 First(X) = {X}", shape=box];
+  n2 [label="对每条产生式 X → Y1Y2…Yn，自\n左向右扫描右部", shape=box];
+  n3 [label="把 First(Yi) \\ {ε} 并\n入 First(X)", shape=box];
+  n4 [label="Yi 能推出 ε？能则继续看 Yi+1，\n不能则停止本产生式", shape=diamond, style="filled", fillcolor="#FFF4E0"];
+  n5 [label="右部全部可空时，把 ε 并入 First\n(X)", shape=box];
+  n6 [label="本轮 First 有变化则迭代（直到不动\n点）", shape=box];
+  n7 [label="Follow(S) 加入输入结束符；对 \nA → αBβ，把 First(β)\\\n{ε} 并入 Follow(B)", shape=box];
+  n8 [label="β 为空或可空时，把 Follow(A)\n 并入 Follow(B)", shape=box];
+  exitx [label="接图（b）", shape=box, style="rounded,filled", fillcolor="#E8F0FE"];
+  n0 -> n1;
+  n1 -> n2;
+  n2 -> n3;
+  n3 -> n4;
+  n4 -> n5;
+  n5 -> n6;
+  n6 -> n7;
+  n7 -> n8;
+  n8 -> exitx;
+  graph [dpi=200];
+}

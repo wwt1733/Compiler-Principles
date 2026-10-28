@@ -1,0 +1,20 @@
+digraph G {
+  graph [rankdir=TB, fontname="SimHei", fontsize=12, nodesep=0.38, ranksep=0.42,
+         margin=0.16, bgcolor="white", pad=0.15];
+  node  [fontname="SimHei", fontsize=11, penwidth=1.1, color="#333333"];
+  edge  [fontname="SimHei", fontsize=10, penwidth=1.1, color="#333333",
+         arrowsize=0.75, labeldistance=1.7];
+  ui [label="图形界面层（Qt Widgets）\n主窗口 / 15 个功能页签 / 日志窗", shape=box, style="rounded"];
+  t1 [label="第一项任务：词法分析生成器", shape=box];
+  t2 [label="第二项任务：LALR(1) 语法分析生成\n器", shape=box];
+  t3 [label="选做：四元式中间代码生成", shape=box];
+  c [label="公共基础层\nFileUtil / Logger / \nLanguageConfig / Typ\nes", shape=box, style="rounded"];
+  ui -> t1;
+  ui -> t2;
+  ui -> t3;
+  t1 -> c;
+  t2 -> c;
+  t3 -> c;
+  t1 -> t2 [label="输出 .lex（编码文件）", style=dashed, constraint=false];
+  graph [dpi=200];
+}

@@ -1,0 +1,34 @@
+digraph G {
+  graph [rankdir=TB, fontname="SimHei", fontsize=12, nodesep=0.38, ranksep=0.42,
+         margin=0.16, bgcolor="white", pad=0.15];
+  node  [fontname="SimHei", fontsize=11, penwidth=1.1, color="#333333"];
+  edge  [fontname="SimHei", fontsize=10, penwidth=1.1, color="#333333",
+         arrowsize=0.75, labeldistance=1.7];
+  s [label="开始", shape=box, style="rounded,filled", fillcolor="#E8F0FE"];
+  a [label="把状态划分为“接受组”与“非接受组”两个\n初态组", shape=box];
+  b [label="接受组内按单词编码再细分（不同编码不可合\n并）", shape=box];
+  c [label="当前划分 P = {P1, P2, …,\n Pn}", shape=box];
+  d [label="取一个组 G，逐个字符类检查组内状态的转\n移目标落在哪个组", shape=box];
+  e [label="组内状态可再分？", shape=diamond, style="filled", fillcolor="#FFF4E0"];
+  e1 [label="按转移目标所在组把 G 拆成若干子组，替\n换进 P", shape=box];
+  f [label="还有未检查的组？", shape=diamond, style="filled", fillcolor="#FFF4E0"];
+  g [label="本次扫描有拆分发生？", shape=diamond, style="filled", fillcolor="#FFF4E0"];
+  h [label="每个组选一个代表状态，重写转移与接受编码", shape=box];
+  i [label="最小化 DFA（状态数最少）+ 划分过程\n记录", shape=parallelogram, style="filled", fillcolor="#EDF7ED"];
+  end [label="结束", shape=box, style="rounded,filled", fillcolor="#E8F0FE"];
+  s -> a;
+  a -> b;
+  b -> c;
+  c -> d;
+  d -> e;
+  e -> e1 [label="是"];
+  e1 -> f;
+  e -> f [label="否"];
+  f -> d [label="是"];
+  f -> g [label="否"];
+  g -> c [label="是（继续细化）"];
+  g -> h [label="否"];
+  h -> i;
+  i -> end;
+  graph [dpi=200];
+}

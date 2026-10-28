@@ -1,0 +1,61 @@
+# TINY 语法树结构定义（语义动作）
+# 每行对应一条产生式，行序与 tiny_grammar.txt 中产生式出现顺序一致（行号见行尾注释）。
+#
+# 行内格式（本项目约定，见 AGENT.md §10）：整行用 ; 分成若干「组」，
+# 每组建/复用一个树结点，**最后一组**的结果就是本次规约的返回值。
+#     L           新建结点，标签 = 产生式左部符号名
+#     L c1 c2 …   同上，并把右部第 c1、c2… 项（从 0 计数）的树根挂成子结点
+#     R n         复用右部第 n 项已有的结点（该位置没有结点时才新建）
+#     R n c1 …    同上，n 之后是要挂成子结点的右部项下标
+#     -1 n        不建结点，直接把右部第 n 项的树根传上去（单链产生式）
+#
+# 三条书写要点：
+#   1. 单链产生式一般写 `-1 0`，即"把那个唯一的右部项直接当成本次结果"，
+#      不额外套一层结点，树更紧凑。
+#      **但开始符号那一条要写 `L 0`**：这样整棵树的根恒为开始符号 `program`，
+#      界面标题、树的判读、自测断言都不必再讨论"根到底是哪一层的等价类"。
+#      注意 `L 0` 与裸 `L` 完全不同：裸 `L` 建的是**没有子结点**的结点，
+#      会把下层整棵子树变成不可达孤岛。
+#   2. 语句类的产生式用 `R0 …` 复用关键字终结符结点（read/write/repeat/if），
+#      让树上出现 `read`、`repeat` 这样的结点，与老师参考树一致。
+#   3. 双目运算（比较、加减、乘除、乘方）写成 `R1 0 2`：复用中间那个运算符结点，
+#      把左右两个操作数挂上去，于是运算符结点**同时**带左右子树。
+#      若误写成 `L …` 或 `R0 …`，运算符结点会另起一个，真正被规约出来的
+#      运算符结点就变成不可达的孤岛（树会"断开"）。
+
+L 0                            # 0  program -> stmt-sequence
+L 0 2                          # 1  stmt-sequence -> stmt-sequence SEMI statement
+-1 0                           # 2  stmt-sequence -> statement
+-1 0                           # 3  statement -> if-stmt
+-1 0                           # 4  statement -> repeat-stmt
+-1 0                           # 5  statement -> assign-stmt
+-1 0                           # 6  statement -> read-stmt
+-1 0                           # 7  statement -> write-stmt
+R0 1 3                         # 8  if-stmt -> if exp then stmt-sequence end
+R0 1 3 5                       # 9  if-stmt -> if exp then stmt-sequence else stmt-sequence end
+R0 1 3                         # 10 repeat-stmt -> repeat stmt-sequence until exp
+R1 0 2                         # 11 assign-stmt -> ID ASSIGN exp
+R0 1                           # 12 read-stmt -> read ID
+R0 1                           # 13 write-stmt -> write exp
+R1 0 2                         # 14 exp -> simple-exp comparison-op simple-exp
+-1 0                           # 15 exp -> simple-exp
+R0                             # 16 comparison-op -> LT
+R0                             # 17 comparison-op -> EQ
+R0                             # 18 comparison-op -> LTEQ
+R0                             # 19 comparison-op -> NE
+R0                             # 20 comparison-op -> RTEQ
+R0                             # 21 comparison-op -> RT
+R1 0 2                         # 22 simple-exp -> simple-exp addop term
+-1 0                           # 23 simple-exp -> term
+R0                             # 24 addop -> PLUS
+R0                             # 25 addop -> MINUS
+R1 0 2                         # 26 term -> term mulop power
+-1 0                           # 27 term -> power
+R0                             # 28 mulop -> MULTIPLY
+R0                             # 29 mulop -> DIVIDE
+R0                             # 30 mulop -> MOD
+R1 0 2                         # 31 power -> power POWER factor
+-1 0                           # 32 power -> factor
+R1                             # 33 factor -> LPAR exp RPAR
+R0                             # 34 factor -> NUMBER
+R0                             # 35 factor -> ID

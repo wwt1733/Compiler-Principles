@@ -1,0 +1,59 @@
+# TINY 语言的全部语法（BNF 文法）
+# 格式：一行一条产生式，用 | 分隔候选式，空串用 # 表示（任务书 p.3）
+# 第一个非终结符 program 即文法的开始符号
+# 来源：任务书 p.7 的 TINY 语法
+# ---------------------------------------------------------------------------
+# 终结符命名约定（与 src/common/LanguageConfig.cpp 的 buildTinyTerminalNames() 逐字一致，
+# 改一处必须改另一处，否则 Grammar::load 会报"未定义终结符"）：
+#   编码 100 NUMBER   101 ID
+#   编码 103 if       104 then    105 else    106 end
+#   编码 107 repeat   108 until   109 read    110 write
+#   编码 200 PLUS     201 MINUS   202 MULTIPLY  203 DIVIDE  204 MOD  205 POWER
+#   编码 206 LT       207 LTEQ    208 NE     209 RT     210 RTEQ  211 EQ
+#   编码 212 LBM      213 RBM     214 SEMI   215 ASSIGN
+#   编码 216 LPAR     217 RPAR
+# 说明 1：任务书 BNF 用 RT 表示 ">"（不是 GT），本文件沿用任务书写法。
+# 说明 2：任务书 BNF 里 factor 含 power 分支、关系运算符含 >= 与 ^，
+#         而单词表漏印了 >= 与 ^，本项目已在 tiny_words.txt 中补入
+#         （编码 210、205），故此处保留 power 与 RTEQ 产生式。
+# 说明 3：任务书 BNF 未给出 power 的产生式（只出现 powop -> ^），
+#         此处补出 power -> factor POWER factor 与 power -> factor 两条，
+#         使 ^ 真正可用；两条产生式在测试报告中标注为"按 BNF 意图补全"。
+# ---------------------------------------------------------------------------
+
+program -> stmt-sequence
+stmt-sequence -> stmt-sequence SEMI statement
+stmt-sequence -> statement
+statement -> if-stmt
+statement -> repeat-stmt
+statement -> assign-stmt
+statement -> read-stmt
+statement -> write-stmt
+if-stmt -> if exp then stmt-sequence end
+if-stmt -> if exp then stmt-sequence else stmt-sequence end
+repeat-stmt -> repeat stmt-sequence until exp
+assign-stmt -> ID ASSIGN exp
+read-stmt -> read ID
+write-stmt -> write exp
+exp -> simple-exp comparison-op simple-exp
+exp -> simple-exp
+comparison-op -> LT
+comparison-op -> EQ
+comparison-op -> LTEQ
+comparison-op -> NE
+comparison-op -> RTEQ
+comparison-op -> RT
+simple-exp -> simple-exp addop term
+simple-exp -> term
+addop -> PLUS
+addop -> MINUS
+term -> term mulop power
+term -> power
+mulop -> MULTIPLY
+mulop -> DIVIDE
+mulop -> MOD
+power -> power POWER factor
+power -> factor
+factor -> LPAR exp RPAR
+factor -> NUMBER
+factor -> ID

@@ -1,0 +1,28 @@
+digraph G {
+  graph [rankdir=TB, fontname="SimHei", fontsize=12, nodesep=0.38, ranksep=0.42,
+         margin=0.16, bgcolor="white", pad=0.15];
+  node  [fontname="SimHei", fontsize=11, penwidth=1.1, color="#333333"];
+  edge  [fontname="SimHei", fontsize=10, penwidth=1.1, color="#333333",
+         arrowsize=0.75, labeldistance=1.7];
+  s [label="开始", shape=box, style="rounded,filled", fillcolor="#E8F0FE"];
+  a [label="读入 .lex：每行 <code> <v\nalue>，末行为 EOF", shape=parallelogram, style="filled", fillcolor="#EDF7ED"];
+  b [label="把编码翻译成文法里的终结符名字（101 \n→ ID）", shape=box];
+  c [label="状态栈 = [0]、符号栈 = []、结\n点栈 = []；输入指针指向首符号", shape=box];
+  e [label="取 state = 栈顶状态、a = 当\n前输入符号，查 ACTION[state\n, a]", shape=box];
+  d [label="动作为移进 / 规约 / 接受 / 报错\n？", shape=diamond, style="filled", fillcolor="#FFF4E0"];
+  act [label="移进：压状态与符号，建叶结点\n规约 A→β：弹 |β| 项，按语义动作\n建内部结点，查 GOTO 压栈\n接受：返回根结点　报错：输出位置与期望符\n号集合", shape=box];
+  more [label="输入读完了吗？", shape=diamond, style="filled", fillcolor="#FFF4E0"];
+  i [label="语法树根结点 → 树状绘制 / 文本 /\n DOT 导出", shape=parallelogram, style="filled", fillcolor="#EDF7ED"];
+  end [label="结束", shape=box, style="rounded,filled", fillcolor="#E8F0FE"];
+  s -> a;
+  a -> b;
+  b -> c;
+  c -> e;
+  e -> d;
+  d -> act;
+  act -> more;
+  more -> e [label="否：继续分析"];
+  more -> i [label="是"];
+  i -> end;
+  graph [dpi=200];
+}

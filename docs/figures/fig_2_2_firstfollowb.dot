@@ -1,0 +1,15 @@
+digraph G {
+  graph [rankdir=TB, fontname="SimHei", fontsize=12, nodesep=0.38, ranksep=0.42,
+         margin=0.16, bgcolor="white", pad=0.15];
+  node  [fontname="SimHei", fontsize=11, penwidth=1.1, color="#333333"];
+  edge  [fontname="SimHei", fontsize=10, penwidth=1.1, color="#333333",
+         arrowsize=0.75, labeldistance=1.7];
+  entry [label="接图（a）", shape=box, style="rounded,filled", fillcolor="#E8F0FE"];
+  n0 [label="本轮 Follow 有变化则迭代（直到不\n动点）", shape=box];
+  n1 [label="输出两张表：非终结符 → First /\n Follow 集合", shape=parallelogram, style="filled", fillcolor="#EDF7ED"];
+  n2 [label="结束", shape=box, style="rounded,filled", fillcolor="#E8F0FE"];
+  entry -> n0;
+  n0 -> n1;
+  n1 -> n2;
+  graph [dpi=200];
+}

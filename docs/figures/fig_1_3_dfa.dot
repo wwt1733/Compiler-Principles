@@ -1,0 +1,39 @@
+digraph G {
+  graph [rankdir=TB, fontname="SimHei", fontsize=12, nodesep=0.38, ranksep=0.42,
+         margin=0.16, bgcolor="white", pad=0.15];
+  node  [fontname="SimHei", fontsize=11, penwidth=1.1, color="#333333"];
+  edge  [fontname="SimHei", fontsize=10, penwidth=1.1, color="#333333",
+         arrowsize=0.75, labeldistance=1.7];
+  s [label="开始", shape=box, style="rounded,filled", fillcolor="#E8F0FE"];
+  a [label="Dstates ← { ε-closur\ne({NFA 初态}) }，作为未标记的\n唯一 DFA 状态", shape=box];
+  b [label="与 NFA 合并后的字符类字母表一起传入", shape=box];
+  c [label="有无未标记的 DFA 状态 T？", shape=diamond, style="filled", fillcolor="#FFF4E0"];
+  d [label="标记 T", shape=box];
+  e [label="取下一个字符类 a 与 T 中的 NFA\n 状态作 move(T, a)", shape=box];
+  f [label="U = ε-closure(move(T\n, a))", shape=box];
+  g [label="U 非空？", shape=diamond, style="filled", fillcolor="#FFF4E0"];
+  h [label="U 已在 Dstates 中？", shape=diamond, style="filled", fillcolor="#FFF4E0"];
+  h1 [label="把 U 作为新 DFA 状态加入 Dst\nates（未标记）", shape=box];
+  i [label="记录转移 δ(T, a) = U；若 U\n 含接受态则继承其单词编码", shape=box];
+  j [label="还有字符类？", shape=diamond, style="filled", fillcolor="#FFF4E0"];
+  k [label="DFA 状态转换表：状态 / 字符类列 \n/ 接受编码", shape=parallelogram, style="filled", fillcolor="#EDF7ED"];
+  end [label="结束", shape=box, style="rounded,filled", fillcolor="#E8F0FE"];
+  s -> a;
+  a -> b;
+  b -> c;
+  c -> d [label="是"];
+  d -> e;
+  e -> f;
+  f -> g;
+  g -> h [label="是"];
+  g -> j [label="否"];
+  h -> h1 [label="否"];
+  h -> i [label="是"];
+  h1 -> i;
+  i -> j;
+  j -> e [label="是"];
+  j -> c [label="否"];
+  c -> k [label="否"];
+  k -> end;
+  graph [dpi=200];
+}

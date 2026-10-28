@@ -1,0 +1,42 @@
+digraph G {
+  graph [rankdir=TB, fontname="SimHei", fontsize=12, nodesep=0.38, ranksep=0.42,
+         margin=0.16, bgcolor="white", pad=0.15];
+  node  [fontname="SimHei", fontsize=11, penwidth=1.1, color="#333333"];
+  edge  [fontname="SimHei", fontsize=10, penwidth=1.1, color="#333333",
+         arrowsize=0.75, labeldistance=1.7];
+  s [label="开始", shape=box, style="rounded,filled", fillcolor="#E8F0FE"];
+  a [label="取 LALR(1) 项目集族、GOTO \n转移与 Follow 集合", shape=box];
+  b [label="对每个项目集 I 的每个项目：", shape=box];
+  c [label="项目为 [A -> α·aβ, b] 且\n a 是终结符？", shape=diamond, style="filled", fillcolor="#FFF4E0"];
+  c1 [label="ACTION[I, a] = 移进 GO\nTO(I, a) 得到的状态号", shape=box];
+  d [label="项目为 [A -> α·, b]？", shape=diamond, style="filled", fillcolor="#FFF4E0"];
+  d1 [label="ACTION[I, b] = 规约 A \n-> α（产生式编号）", shape=box];
+  e [label="项目为 [S' -> S·, $]？", shape=diamond, style="filled", fillcolor="#FFF4E0"];
+  e1 [label="ACTION[I, $] = 接受（ac\nc）", shape=box];
+  f [label="非终结符 X 的 GOTO(I, X) \n是否存在？", shape=diamond, style="filled", fillcolor="#FFF4E0"];
+  f1 [label="GOTO[I, X] = GOTO(I,\n X)", shape=box];
+  g [label="同一表格出现两个动作？", shape=diamond, style="filled", fillcolor="#FFF4E0"];
+  g1 [label="记录冲突：状态、符号、两条候选；\n按“移进优先 / 编号小优先”消解并标注", shape=box];
+  h [label="输出 ACTION / GOTO 二维表\n + 冲突明细", shape=parallelogram, style="filled", fillcolor="#EDF7ED"];
+  end [label="结束", shape=box, style="rounded,filled", fillcolor="#E8F0FE"];
+  s -> a;
+  a -> b;
+  b -> c;
+  c -> c1 [label="是"];
+  c -> d [label="否"];
+  c1 -> g;
+  d -> d1 [label="是"];
+  d -> e [label="否"];
+  d1 -> g;
+  e -> e1 [label="是"];
+  e -> f [label="否"];
+  e1 -> g;
+  f -> f1 [label="是"];
+  f -> g [label="否"];
+  f1 -> g;
+  g -> g1 [label="是"];
+  g -> h [label="否"];
+  g1 -> h;
+  h -> end;
+  graph [dpi=200];
+}

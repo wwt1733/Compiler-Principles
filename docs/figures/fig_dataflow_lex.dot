@@ -1,0 +1,25 @@
+digraph G {
+  graph [rankdir=TB, fontname="SimHei", fontsize=12, nodesep=0.38, ranksep=0.42,
+         margin=0.16, bgcolor="white", pad=0.15];
+  node  [fontname="SimHei", fontsize=11, penwidth=1.1, color="#333333"];
+  edge  [fontname="SimHei", fontsize=10, penwidth=1.1, color="#333333",
+         arrowsize=0.75, labeldistance=1.7];
+  ui [label="① 单词规格编辑器（tiny_words\n.txt / minic_words.t\nxt）", shape=box];
+  spec [label="TokenSpec：解析规格\n名字_编码[L]、digit=、Comm\nent/Keyword 分类", shape=box];
+  re [label="RegexParser + CharCl\nassBuilder\n正则式语法树 + 字符类等价类划分", shape=box];
+  nfa [label="RegexToNfa：Thompson \n构造\n（NFA 状态转换表）", shape=box];
+  dfa [label="NfaToDfa：子集构造 + ε 闭包\n（DFA 状态转换表）", shape=box];
+  min [label="DfaMinimize：划分法最小化", shape=box];
+  gen [label="LexCodeGen：生成 C++ 词法\n分析程序\n方法一 Judgechar / 方法二 \nswitch(state)", shape=box];
+  build [label="LexBuild：g++ 编译 → 运行\n生成的可执行程序", shape=box];
+  lex [label="输出 sample.lex（单词编码文件\n）", shape=parallelogram, style="filled", fillcolor="#EDF7ED"];
+  ui -> spec;
+  spec -> re;
+  re -> nfa;
+  nfa -> dfa;
+  dfa -> min;
+  min -> gen;
+  gen -> build;
+  build -> lex;
+  graph [dpi=200];
+}

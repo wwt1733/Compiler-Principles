@@ -1,0 +1,27 @@
+digraph G {
+  graph [rankdir=TB, fontname="SimHei", fontsize=12, nodesep=0.38, ranksep=0.42,
+         margin=0.16, bgcolor="white", pad=0.15];
+  node  [fontname="SimHei", fontsize=11, penwidth=1.1, color="#333333"];
+  edge  [fontname="SimHei", fontsize=10, penwidth=1.1, color="#333333",
+         arrowsize=0.75, labeldistance=1.7];
+  n0 [label="开始", shape=box, style="rounded,filled", fillcolor="#E8F0FE"];
+  n1 [label="逐行读入规格文本，跳过空行与注释行", shape=box];
+  n2 [label="识别“名字_编码[L]”，登记编码与 L\n（连续编码）标志", shape=box];
+  n3 [label="按四类登记：Definition（宏）/\n Comment / Keyword /\n Normal", shape=box];
+  n4 [label="宏定义 digit=、letter= 存\n入宏表，不参与自动机", shape=box];
+  n5 [label="对 Normal / Comment 的\n正则式做词法分析", shape=box];
+  n6 [label="转义 \\x 还原为单字符；[..] 展\n开为字符集原子", shape=box];
+  n7 [label="~x 记为补集；? 与 + 展开为基本运\n算的组合", shape=box];
+  n8 [label="递归展开命名宏（检测循环引用）；相邻操作\n数间补连接符“.”", shape=box];
+  exitx [label="接图（b）", shape=box, style="rounded,filled", fillcolor="#E8F0FE"];
+  n0 -> n1;
+  n1 -> n2;
+  n2 -> n3;
+  n3 -> n4;
+  n4 -> n5;
+  n5 -> n6;
+  n6 -> n7;
+  n7 -> n8;
+  n8 -> exitx;
+  graph [dpi=200];
+}

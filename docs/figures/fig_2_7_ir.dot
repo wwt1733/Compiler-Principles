@@ -1,0 +1,28 @@
+digraph G {
+  graph [rankdir=TB, fontname="SimHei", fontsize=12, nodesep=0.38, ranksep=0.42,
+         margin=0.16, bgcolor="white", pad=0.15];
+  node  [fontname="SimHei", fontsize=11, penwidth=1.1, color="#333333"];
+  edge  [fontname="SimHei", fontsize=10, penwidth=1.1, color="#333333",
+         arrowsize=0.75, labeldistance=1.7];
+  s [label="开始", shape=box, style="rounded,filled", fillcolor="#E8F0FE"];
+  a [label="以语法树根结点为输入，做归纳翻译", shape=box];
+  b [label="按结点标签分派：变量定义 / 赋值 / \n表达式 / 控制流 / 函数边界", shape=box];
+  c [label="二元运算：先求左右子表达式的值，再发射 \n(op, 左, 右, 临时变量)", shape=box];
+  d [label="赋值：发射 (=, 右值, -, 变量名\n)", shape=box];
+  e [label="if / while / for：发射条\n件跳转与转移四元式（(j<,), (j,\n), (label,)）", shape=box];
+  f [label="函数定义 / 调用：发射 (func, \n名, 参数个数, -) 与 (call,\n 名, 实参个数, 临时)", shape=box];
+  g [label="还有未翻译的结点？", shape=diamond, style="filled", fillcolor="#FFF4E0"];
+  h [label="输出四元式表（序号, op, arg1,\n arg2, result）+ 文本/T\nSV 导出", shape=parallelogram, style="filled", fillcolor="#EDF7ED"];
+  end [label="结束", shape=box, style="rounded,filled", fillcolor="#E8F0FE"];
+  s -> a;
+  a -> b;
+  b -> c;
+  c -> d;
+  d -> e;
+  e -> f;
+  f -> g;
+  g -> b [label="是"];
+  g -> h [label="否"];
+  h -> end;
+  graph [dpi=200];
+}

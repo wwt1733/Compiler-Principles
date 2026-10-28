@@ -1,0 +1,29 @@
+digraph G {
+  graph [rankdir=TB, fontname="SimHei", fontsize=12, nodesep=0.38, ranksep=0.42,
+         margin=0.16, bgcolor="white", pad=0.15];
+  node  [fontname="SimHei", fontsize=11, penwidth=1.1, color="#333333"];
+  edge  [fontname="SimHei", fontsize=10, penwidth=1.1, color="#333333",
+         arrowsize=0.75, labeldistance=1.7];
+  ui [label="⑦ 文法编辑器（tiny_grammar\n.txt / minic_grammar\n.txt）", shape=box];
+  gram [label="Grammar：载入 BNF、识别开始符\n号、增广 S'→S", shape=box];
+  simp [label="GrammarSimplify：删不可达\n规则、删不能推导的规则", shape=box];
+  ff [label="FirstFollow：First / \nFollow 集合", shape=box];
+  lr0 [label="LrItems：LR(0) 项目集规范族\n + GOTO 函数", shape=box];
+  lalr [label="Lr1Items：LR(1) 项目 → \n同心集合并 → LALR(1)", shape=box];
+  table [label="ParseTable：ACTION / \nGOTO 表 + 冲突报告", shape=box];
+  parse [label="Parser：表驱动分析（读 .lex）\n+ 语义动作建树", shape=box];
+  tree [label="语法树（树状呈现 / 文本 / DOT \n导出）", shape=parallelogram, style="filled", fillcolor="#EDF7ED"];
+  ic [label="IntermediateCode：四元式\n（选做）", shape=box];
+  lexsrc [label="任务一输出的 sample.lex", shape=note, style="filled", fillcolor="#F5F5F5"];
+  ui -> gram;
+  gram -> simp;
+  simp -> ff;
+  ff -> lr0;
+  lr0 -> lalr;
+  lalr -> table;
+  table -> parse;
+  parse -> tree;
+  tree -> ic;
+  lexsrc -> parse [label="sample.lex", style=dashed];
+  graph [dpi=200];
+}

@@ -1,0 +1,35 @@
+digraph G {
+  graph [rankdir=TB, fontname="SimHei", fontsize=12, nodesep=0.38, ranksep=0.42,
+         margin=0.16, bgcolor="white", pad=0.15];
+  node  [fontname="SimHei", fontsize=11, penwidth=1.1, color="#333333"];
+  edge  [fontname="SimHei", fontsize=10, penwidth=1.1, color="#333333",
+         arrowsize=0.75, labeldistance=1.7];
+  s [label="开始", shape=box, style="rounded,filled", fillcolor="#E8F0FE"];
+  a [label="I0 = closure({ S' ->\n ·S })", shape=box];
+  b [label="项目集规范族 C = { I0 }，待处\n理队列 = [I0]", shape=box];
+  c [label="取出一个项目集 I", shape=box];
+  d [label="对 I 中每个“· ”后面是符号 X 的\n项目求 GOTO(I, X)", shape=box];
+  e [label="GOTO 结果 = closure(所有\n A -> αX·β 的项目)", shape=box];
+  f [label="闭包：把 B -> ·γ 加入，直到不再\n变化（此处不含向前看符号）", shape=box];
+  g [label="该状态已存在？", shape=diamond, style="filled", fillcolor="#FFF4E0"];
+  h [label="新建 DFA 状态并加入 C 与待处理队\n列", shape=box];
+  i [label="记录转移 δ(I, X) = 新状态（X\n 可为终结符或非终结符）", shape=box];
+  j [label="还有项目集？", shape=diamond, style="filled", fillcolor="#FFF4E0"];
+  k [label="LR(0) 项目集族 + 状态转移表 /\n DFA 图", shape=parallelogram, style="filled", fillcolor="#EDF7ED"];
+  end [label="结束", shape=box, style="rounded,filled", fillcolor="#E8F0FE"];
+  s -> a;
+  a -> b;
+  b -> c;
+  c -> d;
+  d -> e;
+  e -> f;
+  f -> g;
+  g -> h [label="否"];
+  h -> i;
+  g -> i [label="是"];
+  i -> j;
+  j -> c [label="是"];
+  j -> k [label="否"];
+  k -> end;
+  graph [dpi=200];
+}

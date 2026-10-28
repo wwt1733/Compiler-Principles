@@ -1,0 +1,426 @@
+﻿=== 编译原理课程设计系统 无界面自测报告 ===
+Qt 版本      ：6.10.2
+Qt 安装前缀  ：E:/2026-02 bianyiyuanli/2026-02 编译原理课程设计/build/CompilerCourseDesign/release
+程序目录     ：E:\2026-02 bianyiyuanli\2026-02 编译原理课程设计\build\CompilerCourseDesign\release
+数据目录     ：E:\2026-02 bianyiyuanli\2026-02 编译原理课程设计\build\CompilerCourseDesign\release\data
+
+[通过] T1 语言配置表含 2 种语言（TINY、mini-C）  —— 实际 2 种
+[通过] T1.1 TINY 关键字 8 个  —— 实际 8 个
+[通过] T1.2 TINY 关键字顺序为 if/then/else/end/repeat/until/read/write
+[通过] T1.4 mini-C 关键字 10 个（else/if/int/float/double/return/void/do/while/for）  —— 实际 10 个
+[通过] T1.5 mini-C 关键字顺序与 minic_words.txt 一致  —— else/if/int/float/double/return/void/do/while/for
+[通过] T2 TINY 语言 数据文件存在且非空：tiny_words.txt  —— 2882 字节
+[通过] T2 TINY 语言 数据文件存在且非空：tiny_grammar.txt  —— 2483 字节
+[通过] T2 TINY 语言 数据文件存在且非空：tiny_semantics.txt  —— 4088 字节
+[通过] T2 TINY 语言 数据文件存在且非空：sample.tny  —— 470 字节
+[通过] T2 mini-C 语言 数据文件存在且非空：minic_words.txt  —— 3963 字节
+[通过] T2 mini-C 语言 数据文件存在且非空：minic_grammar.txt  —— 2951 字节
+[通过] T2 mini-C 语言 数据文件存在且非空：minic_semantics.txt  —— 4636 字节
+[通过] T2 mini-C 语言 数据文件存在且非空：sample.mc  —— 357 字节
+[通过] T3 单词规格文件可读取  —— 编码判定为 UTF-8
+[通过] T3.1 规格文件包含宏定义 digit=[0-9]
+[通过] T3.2 规格文件包含 Keyword103L 关键字定义
+[通过] T3.3 规格文件包含 Symbol200L 符号定义
+[通过] T3.4 规格文件包含注释 102 定义
+[通过] T4 TINY 文法产生式条数为 36  —— 实际 36 条
+[通过] T4.1 mini-C 文法产生式条数为 65  —— 实际 65 条
+[通过] T4.2 mini-C 文法含 dowhile-stmt 产生式
+[通过] T5.1 基本正则 a(b|c)* 可解析
+[通过] T5.2 逆波兰式正确（a b c | * .）  —— \a \b \c | * .
+[通过] T5.3 字符集 [0-9] 可解析
+[通过] T5.4 [0-9] 展开为 10 个字符的选择  —— \0 \1 | \2 | \3 | \4 | \5 | \6 | \7 | \8 | \9 |
+[通过] T5.5 转义 \+ 可作为字面量
+[通过] T5.6 转义后逆波兰式为 \+  —— \+
+[通过] T5.7 可选 a? 可解析
+[通过] T5.8 可选逆波兰式为 \a ?  —— \a ?
+[通过] T5.9 正闭包 a+ 可解析
+[通过] T5.10 正闭包逆波兰式为 \a +  —— \a +
+[通过] T5.11 空串 # 可解析
+[通过] T5.12 非运算 ~eoln 可解析
+[通过] T5.13 ~eoln 展开为除换行回车外约 96 个字符  —— 选择符个数 254
+[通过] T5.14 宏展开 letter(letter|digit)* 可解析
+[通过] T5.15 括号不匹配时报错
+[通过] T5.16 非法 ~abc 被拒绝
+[通过] T6.1 TINY 单词规格解析无错误
+[通过] T6.2 需要建自动机的定义有 21 条（Comment + Num + ID + 18 个符号）  —— 实际 21 条
+[通过] T6.3 关键字条目 8 条（Keyword103L 已按 L 展开）  —— 实际 8 条
+[通过] T6.4 关键字编码连续为 103~110  —— 实际 8 个：首 103 末 110
+[通过] T6.4b 关键字词表为 if/then/else/end/repeat/until/read/write  —— if/then/else/end/repeat/until/read/write
+[通过] T6.5 宏定义 digit 与 letter 已登记
+[通过] T6.6 编码分配符合 AGENT.md §6.1（100/101/102）
+[通过] T6.7 TINY 专用符号 18 个（编码 200~217）  —— 实际 18 个
+[通过] T6.8 逐个符号的编码与 AGENT.md §6.1 完全一致  —— %=204 (=216 )=217 *=202 +=200 -=201 /=203 :==215 ;=214 <=206 <==207 <>=208 ==211 >=209 >==210 ^=205 {=212 }=213
+[通过] T7.1 a(b|c)* 的 NFA 构造成功
+[通过] T7.2 a(b|c)* 的 NFA 状态数为 11（含统一开始状态）  —— 实际 11
+[通过] T7.3 NFA 存在接受状态  —— 接受状态数 1
+[通过] T7.4 NFA 字母表含 a、b、c  —— a,b,c
+[通过] T7.5 TINY 全部单词合并构造 NFA 成功
+[通过] T7.6 合并 NFA 状态数在合理范围（10~2000）  —— 实际 67 个状态、88 条边、字母表 18 个字符类
+[通过] T7.7 注释规则的接受标签已标记 isComment
+[通过] T7.8 ε 闭包包含开始状态且非空  —— 闭包大小 23
+[通过] T7.9 由闭包经数字字符可 move 到新状态  —— 符号 @0，move 结果 1 个状态
+[通过] T8.1 (a|b)*abb 的 NFA 构造成功
+[通过] T8.2 子集构造成功
+[通过] T8.3 (a|b)*abb 的 DFA 有 5 个状态（A~E）  —— 实际 5 个
+[通过] T8.4 DFA 初态编号为 0
+[通过] T8.5 DFA 恰有 1 个接受状态  —— 实际 1 个
+[通过] T8.5b 接受态 accepting=true 但 acceptCode=-1（不输出编码）  —— 接受态 4，编码 -1
+[通过] T8.6 DFA 全部转移目标合法
+[通过] T8.7 字符串 abb 能被 DFA 接受  —— 终态 4
+[通过] T8.8 字符串 ab 不能被 DFA 接受  —— 终态 3
+[通过] T8.9 (a|b)*abb 的 DFA 最小化成功
+[通过] T8.10 (a|b)*abb 最小化后为 4 个状态（A 与 C 等价合并）  —— 实际 4 个
+[通过] T8.12 手工 DFA（含等价状态对）最小化成功
+[通过] T8.13 两组等价状态各合并 1 个，状态数 6 → 4  —— 实际 4 个
+[通过] T8.14 合并记录显示 0/2 同组且 4/5 同组
+[通过] T8.11 最小化 DFA 恰有 1 个接受状态且 abb/ab 判定不变  —— 接受态 1 个
+[通过] T9.1 TINY 合并 NFA 构造成功
+[通过] T9.2 TINY 子集构造成功
+[通过] T9.3 DFA 状态数少于 NFA 状态数（子集构造必然收缩）  —— NFA 67 → DFA 26
+[通过] T9.4 DFA 接受状态覆盖 Num(100)/ID(101)/Comment(102)  —— 缺失编码 
+[通过] T9.5 TINY DFA 最小化成功
+[通过] T9.6 最小化后状态数不多于原 DFA  —— 26 → 24
+[通过] T9.7 最小化 DFA 初态编号为 0
+[通过] T9.8 合并记录覆盖全部原状态（完全划分）  —— 覆盖 26 / 原 26
+[通过] T9.9 不同编码的接受态未被错误合并
+[通过] T9.10 最小化前后对 8 个输入串的接受结果一致  —— （可接受探针 6 / 8 个）
+[通过] T9.11 划分过程记录含多轮细化信息  —— 记录 73 行
+[通过] T9.12 最小化前后对 7 段程序的最长匹配切分完全一致
+[通过] T9.13 最长匹配生效：a:=1 切分为 101,215,100  —— 101,215,100
+[通过] T10.1 可读取 tiny_words.txt  —— E:/2026-02 bianyiyuanli/2026-02 编译原理课程设计/data/tiny_words.txt
+[通过] T10.2 可定位 sample.tny  —— E:/2026-02 bianyiyuanli/2026-02 编译原理课程设计/data/sample.tny
+[通过] T10.3 流水线规格解析与自动机构造全部成功  —— 定义 31 条；NFA 67 状态；DFA 26 状态；最小化 24 状态；生成源码 365 行；g++ 编译通过；.lex 96 行
+[通过] T10.4 已生成词法分析源程序  —— 365 行
+[通过] T10.5 生成代码含状态常量与转移函数
+[通过] T10.6 生成代码含关键字查表函数 findKeyword
+[通过] T10.7 生成代码含最长匹配与回退逻辑（lastAcceptPos）
+[通过] T10.8 生成代码头部标注所用转换方法
+[通过] T10.9 生成代码把 ID 编码写为 101（相应 处引用关键字表）
+[通过] T10.10 g++ 编译成功
+[通过] T10.11 生成的可执行文件运行成功（返回码 0）
+[通过] T10.12 已产出 .lex 文件且非空  —— E:/2026-02 bianyiyuanli/2026-02 编译原理课程设计/build/CompilerCourseDesign/release/output/lexbuild/tiny.lex
+[通过] T10.13 .lex 末行为 EOF  —— EOF
+[通过] T10.14 第一行词法结果正确（read=109/xXx/; 且注释无输出）  —— 109 | 101 "xXx" | 214 | 103
+[通过] T10.15 关键字已查表改判（出现 103~110 编码 25 个）  —— 关键字 25 个、ID 20 个
+[通过] T10.16 数字与标识符正常识别  —— ID 20 个、NUM 19 个
+[通过] T10.17 注释不输出编码（.lex 中无 102）  —— 出现 0 次
+[通过] T10.18 关系运算符 <= / <> / >= 编码正确（207/208/210）
+[通过] T10.19 赋值号 := 编码正确（215）
+[通过] T10.20 数字保留前导零（001 原样输出）
+[通过] T10.21 方法二（switch(state)）同样编译运行成功  —— 定义 31 条；NFA 67 状态；DFA 26 状态；最小化 24 状态；生成源码 460 行；g++ 编译通过；.lex 96 行
+[通过] T10.22 两种转换方法产出的 .lex 完全一致  —— 方法一 96 行 / 方法二 96 行
+[通过] T10.23 任务书示例排版只输出一行单词 + 一行 EOF  —— 实际 2 行
+[通过] T11.1 字符编码规则与预期一致（含转义与十六进制写法）
+[通过] T11.2 十六进制转义统一使用小写 x（不出现 \XNN）
+[通过] T11.3 编码后的记号能被 decodeToken 还原为原字符
+[通过] T11.4 取反字符全集覆盖全部 256 个字节值  —— 实际 256 个
+[通过] T11.5 字符全集包含高位字节（0x80~0xFF，用于 UTF-8 汉字）
+[通过] T11.5b "~eoln" 中 ~ 与其操作数之间不插入连接记号  —— Tilde@0 Identifier@1:'eoln' End@5
+[通过] T11.5c 注释正则切分后含两个连接记号（{, ~}, } 三段相接）  —— Escape@0:'{' Concat@3 LPar@3 Tilde@4 Escape@6:'}' RPar@8 Star@9 Concat@11 Escape@11:'}' End@13
+[通过] T11.6 TINY 规格可完成到最简 DFA 的全部步骤
+[通过] T11.7 最简 DFA 能识别多字符注释 {ab}  —— 识别=1 注释=1 编码=102
+[通过] T11.8 最简 DFA 能识别空注释 {}
+[通过] T11.9 注释后紧跟内容时不会整体误接受  —— 整体接受=0（应仅前缀可接受）
+[通过] T19.0 TINY 规格可按字符类字母表构造 NFA
+[通过] T19.1 字母表是字符类而不是 256 个字节  —— 字符类 18 个
+[通过] T19.2 TINY 的 18 个字符类名字与预期完全一致  —— digit,letter,{,},+,-,*,/,%,^,<,=,>,;,:,(,),<other>
+[通过] T19.3 各字符类两两不交且都非空  —— 覆盖字节合计 256 个
+[通过] T19.4 字符类的符号键唯一
+[通过] T19.5 TINY 的字符类覆盖全部 256 个字节  —— 实际覆盖 256 个
+[通过] T19.6 字节映射到正确的字符类（a→letter、7→digit、+→+）  —— a→letter、7→digit、+→+
+[通过] T19.7 换行符归入 <other>（只被注释规则接受）  —— <other>
+[通过] T19.8 字符类图例为纯 ASCII 且逐类写出字节集  —— digit = 0-9 letter = A-Z,a-z { = { } = } + = + - = <2D> * = * / = / % = % ^ = ^ 
+[通过] T20.0 两种字母表都能走完 NFA→DFA→最小化  —— byte=1 class=1
+[通过] T20.1 两种字母表的最小 DFA 状态数相同  —— 字符类 24 / 字节 24
+[通过] T20.2 字符类字母表与字节字母表的自动机语言等价（逐字节比对 256 个转移）  —— 字符类 DFA 24 状态 / 字节 DFA 24 状态
+[通过] T20.3 字符类构造的 NFA 远小于按字节的 NFA  —— 字符类 67 / 字节 1563 个状态
+[通过] T21.1 TINY 规格可生成最简 DFA
+[通过] T21.2 TINY 样例程序可被最简 DFA 完整切分
+[通过] T21.3 TINY 参考数据的令牌行数为 96  —— 实际 96 行
+[通过] T21.4 TINY 的 96 个令牌与老师参考数据逐行一致  —— 96 行全部吻合
+[通过] T21.1 mini-C 规格可生成最简 DFA
+[通过] T21.2 mini-C 样例程序可被最简 DFA 完整切分
+[通过] T21.3 mini-C 参考数据的令牌行数为 79  —— 实际 79 行
+[通过] T21.4 mini-C 的 79 个令牌与老师参考数据逐行一致  —— 79 行全部吻合
+[通过] T22 对复合宏取反（~m）会明确报错，不再静默忽略  —— 第 1 列：非运算 ~ 只支持"宏体是单个字符集"的宏，而宏 m 的正则式不是简单字符集
+[通过] T22b 对字符集宏取反（~digit）仍然正确（256-10=246 个字节）  —— 取反后 246 个字节
+[通过] T23.1 缺少 ID 规则时流水线仍能建出自动机
+[通过] T23.2 关键字可产生性诊断报出 3 个关键字  —— 3 条：关键字「BOOL」（编码 105）永远不会被识别：规格里没有能把「BOOL」识别成标识符（编码 101）的自动机规则，通常是缺少 ID 规则（如 ID_101=letter(letter|digit)*） / 关键字「DOUBLE」（编码 104）永远不会被识别：规格里没有能把「DOUBLE」识别成标识符（编码 101）的自动机规则，通常是缺少 ID 规则（如 ID_101=letter(letter|digit)*） / 关键字「INT」（编码 103）永远不会被识别：规格里没有能把「INT」识别成标识符（编码 101）的自动机规则，通常是缺少 ID 规则（如 ID_101=letter(letter|digit)*）
+[通过] T23.3 补上 ID 规则后最小规格可用
+[通过] T23.4 补上 ID 规则后不再有关键字告警
+[通过] T23.5 关键字编码为 基号+k：INT=103、DOUBLE=104、BOOL=105  —— INT=103 DOUBLE=104 BOOL=105
+[通过] T23.6 最小规格的字母表恰为 digit / letter / / / <other> 四类  —— digit,letter,/,<other>
+[通过] T23.7 自动机把 INT 识别为标识符(101)，关键字表改判为 103  —— 识别=1 自动机编码=101 关键字编码=103
+[通过] T23.8 小写 int 只被识别为标识符（大小写敏感，无关键字）  —— 识别=1 编码=101 关键字编码=-1
+[通过] T23.9 //(~eoln)* 能把 //hello 整段识别为注释（不输出编码）  —— 识别=1 注释=1 声明编码=102
+[通过] T23.10 含空格的串不会被当成单个标识符  —— 识别=0
+[通过] T24.0 TINY 规格构造 NFA（供 ε 边不变量检查）
+[通过] T24.1 NFA 中存在 ε 边（否则图必然是一堆孤立状态）  —— ε 边 43 条 / 全部边 88 条（ε 边应占大多数）
+[通过] T24.2 除统一初态外每个状态都有入边
+[通过] T24.3 每个非接受态都有出边
+[通过] T24.4 接受态个数等于参与自动机的规则条数  —— 接受态 21 个 / 规则 21 条
+[通过] T24.5 从初态出发沿全部边可达每一个状态  —— 可达 67 / 共 67 个状态
+[通过] T12.1 TINY 关键字编码为 if=103 then=104 else=105 end=106  —— if=103 then=104 else=105 end=106
+[通过] T12.2 TINY 关键字编码为 repeat=107 until=108 read=109 write=110  —— repeat=107 until=108 read=109 write=110
+[通过] T12.3 专用符号编码连续且唯一（200~217 共 18 个）  —— 实际 18 个
+[通过] T12.3b 圆括号与乘方已登记编码（216/217/205）  —— (=216 )=217 ^=205
+[通过] T12.4 专用符号编码互不重复
+[通过] T12.5 关键字编码与符号编码无交叉  —— 交叉 0 个
+[通过] T13.0 终结符命名表已建立（TINY 28 项、mini-C 38 项）  —— TINY 28、mini-C 38
+[通过] T13.0b 关键编码翻译正确（:=→ASSIGN、<>→NE、<=→LTEQ）  —— 215=ASSIGN 208=NE 207=LTEQ
+[通过] T13.0c TINY 与 mini-C 同一编码含义不同（100 分别是 NUMBER/NUM）  —— TINY=NUMBER mini-C=NUM
+[通过] T13.0d 注释编码 102 不在命名表内（注释不输出编码）  —— TINY 含 102=0、mini-C 含 102=0
+[通过] T13.0e 编码↔终结符名互查一致（TINY 全表往返）
+[通过] T13.1 载入 TINY BNF 文法  —— 产生式 36 条；非终结符 16 个；终结符 26 个；开始符号 program
+[通过] T13.1b TINY 开始符号为 program  —— program
+[通过] T13.2 TINY 文法全部 26 个终结符都能在编码表中查到  —— 无未登记终结符
+[通过] T13.3 TINY 文法无 ε 产生式（计数 0）
+[通过] T13.4 TINY 文法无不可推导/不可达符号（化简前后一致）  —— 删除非终结符 0 个（不可推导 0、不可达 0）、产生式 0 条；化简后产生式 36 条
+[通过] T13.5 增广后追加 S' -> program 且 S' 位于非终结符首位  —— 末尾产生式：S' -> program
+[通过] T13.5b 重复增广是幂等的（产生式数仍为 37）  —— 实际 37 条
+[通过] T13.6 计算 TINY First/Follow  —— 非终结符 17 个；可空 0 个；First 集合计 51 个元素；Follow 集合计 123 个元素
+[通过] T13.6b Follow(program) 含结束符 $  —— { $ }
+[通过] T13.6c First(factor) 含 NUMBER、ID、LPAR  —— { ID、LPAR、NUMBER }
+[通过] T13.6d Follow(factor) 含 MULTIPLY、DIVIDE、MOD、POWER  —— { $、DIVIDE、EQ、LT、LTEQ、MINUS、MOD、MULTIPLY、NE、PLUS、POWER、RPAR、RT、RTEQ、SEMI、else、end、then、until }
+[通过] T13.6e Follow(stmt-sequence) 含 end、else、until  —— { $、SEMI、else、end、until }
+[通过] T13.6f TINY 文法无 ε ⇒ 可空集合为空  —— 可空 0 个
+[通过] T13.6g 序列 First 与可空判定正确  —— First(NUMBER)={ NUMBER }
+[通过] T13.7 载入 mini-C BNF 文法  —— 产生式 65 条；非终结符 29 个；终结符 31 个；开始符号 program
+[通过] T13.7b mini-C 文法全部 31 个终结符都能在编码表中查到  —— 无未登记终结符
+[通过] T13.7c mini-C 的 ε 产生式已归一化为空右部（共 3 条）  —— 期望 3 条（local-definitions/statement-list/arguments）
+[通过] T13.7d mini-C 文法无不可推导/不可达符号（化简前后一致）  —— 删除非终结符 0 个（不可推导 0、不可达 0）、产生式 0 条；化简后产生式 65 条
+[通过] T13.7e 计算 mini-C First/Follow  —— 非终结符 30 个；可空 3 个；First 集合计 102 个元素；Follow 集合计 222 个元素
+[通过] T13.7f 三个含 ε 产生式的非终结符可空  —— 可空集合：local-definitions、statement-list、arguments
+[通过] T13.7g compound-stmt 不可空（LBM/RBM 是终结符）
+[通过] T13.7h Follow(statement) 含 RBM 与 else  —— { ID、LBM、LLM、NUM、RBM、SEMI、do、else、if、return、while }
+[通过] T13.7i First(definition-list) 含 int/float/double/void  —— { double、float、int、void }
+[通过] T13.7j Follow(program) 含结束符 $  —— { $ }
+[通过] T13.8 载入含无用符号的测试文法
+[通过] T13.8b 删除不可推导符号 C 与 D  —— 实际删除：C、D
+[通过] T13.8c 删除不可达符号 B  —— 实际删除：B
+[通过] T13.8d 保留 S 与 A、保留产生式 2 条  —— 剩余 2 条：S -> A / A -> a
+[通过] T13.8e 化简过程有逐步说明（供报告引用）  —— 10 条说明
+[通过] T13.9 载入含可空非终结符的测试文法
+[通过] T13.9b A、B 可空，S 不可空  —— 可空：A、B
+[通过] T13.9c First(S) = { a、b、c }（跨过可空的 A 与 B）  —— { a、b、c }
+[通过] T13.9d Follow(A) ⊇ { b、c }（B 可空 ⇒ c 也进入）  —— { b、c }
+[通过] T13.9e Follow(B) ⊇ { c }  —— { c }
+[通过] T14.1 载入闭包测试文法
+[通过] T14.1b closure({S' -> ·S}) 含 3 个项目  —— 实际 3 个：S,A,S'
+[通过] T14.1c 闭包项目左部为 S'、S、A 且圆点均在 0 位  —— 左部：A,S,S'
+[通过] T14.1d goto(I0, A) 经闭包含 B 的项目（共 2 个）  —— 2 个项目：B,S
+[通过] T14.1e goto(I0, b) 为空集
+[通过] T14.2 LR(0) 规范族为 6 个状态、5 条转移  —— LR(0) 项目集规范族：6 个状态、5 条转移；文法产生式 4 条
+[通过] T14.2c 转移边总数 = 5（实际 5）
+[通过] T14.2d 恰好 1 个接受状态（实际 1）
+[通过] T14.2b 状态 0 是初态  —— S -> · A B
+A -> · a
+S' -> · S
+[通过] T14.3 载入含 ε 产生式的闭包测试文法
+[通过] T14.3b A 的 ε 项目 [A -> ·, b] 已被生成  —— A 相关项目的向前看：b
+[通过] T14.3c A 的向前看是 b（FIRST(B$) 跨过 ε 得到 B 的首符号）  —— 实际：b
+[通过] T14.3d 文法含 A 的 ε 产生式（实际 1 条，总产生式 5 条）  —— S -> A B / A -> a / A -> # / B -> b / S' -> S
+[通过] T14.3f FIRST(B$) = { b } —— 结束符 $ 必须按终结符处理  —— { b }
+[通过] T14.4 载入 SLR 冲突 / LALR 无冲突的经典文法
+[通过] T14.4b LALR(1) 对该文法无冲突  —— LALR(1) 分析表：10 个状态；ACTION 表项 17 个、GOTO 表项 7 个；无冲突
+[通过] T14.4c LALR(1) 表非空且含接受动作  —— LALR(1) 分析表：10 个状态；ACTION 表项 17 个、GOTO 表项 7 个；无冲突
+[通过] T14.4d SLR(1) 对该文法产生冲突（能力弱于 LALR）  —— 冲突 1 处
+[通过] T14.4e LR(0) 冲突数不少于 SLR(1)（最弱）  —— LR(0) 1 处、SLR(1) 1 处
+[通过] T14.5 LR(1) 状态数(14) ≥ LALR(1) 状态数(10)  —— LALR(1)：LR(1) 规范族 14 个状态 → 合并同核心后 10 个状态（4 个核心组发生过合并）；14 条转移；向前看条目 31 个
+[通过] T14.5b 确实发生过同核心合并（合并组数 > 0）  —— 合并组 4 个
+[通过] T14.6 载入 TINY 文法用于分析表构造
+[通过] T14.6b TINY 的 LALR(1) 分析表构造成功  —— LALR(1) 分析表：58 个状态；ACTION 表项 357 个、GOTO 表项 75 个；无冲突
+[通过] T14.6b2 化简+增广后文法仍有完整规模  —— 产生式 37 条、终结符 26 个、非终结符 17 个
+[通过] T14.6b4 初态 I0 已展开闭包（15 个项目）  —— I0 项目数 15
+[通过] T14.6b5 初态 I0 的转移边数 > 10（实际 13）  —— 转移符号：ID,assign-stmt,if,if-stmt,program,read,read-stmt,repeat,repeat-stmt,statement,stmt-sequence,write,write-stmt
+[通过] T14.6b3 分析表行数 == LALR 自动机状态数  —— 表 58 行、自动机 58 状态、LR(1) 族 308 状态
+[通过] T14.6c TINY 分析表含接受动作 acc  —— LALR(1) 分析表：58 个状态；ACTION 表项 357 个、GOTO 表项 75 个；无冲突
+[通过] T14.6d TINY 的 GOTO 表项 75 个（>0）
+[通过] T14.6e TINY 冲突报告可生成（供报告引用）  —— 无冲突
+[通过] T14.7 载入 mini-C 文法用于分析表构造
+[通过] T14.7b mini-C 的 LALR(1) 分析表构造成功  —— LALR(1) 分析表：106 个状态；ACTION 表项 627 个、GOTO 表项 148 个；冲突 1 处
+[通过] T14.7c mini-C 分析表含接受动作 acc
+[通过] T14.7d mini-C 的冲突已被检出并消解（表仍可用）  —— 冲突 1 处，已按移进优先消解
+[通过] T14.7e mini-C 分析表可导出为文本  —— 9475 字符
+[通过] T14.8 冲突消解策略可切换且被写入报告文本  —— 移进策略冲突 1 处、规约策略冲突 1 处
+[通过] T15.1 语义动作行解析无错（5 行）  —— 语义动作：5 条产生式有定义、共 7 个建结点组
+[通过] T15.1b `L 1 ; L` 解析为 2 组，第一组子结点=[1]、第二组无子结点  —— 组数=2
+[通过] T15.1c `R0 2` 解析为建结点(标签=右部第0项)、子结点=[2]  —— 建结点(标签=右部第0项) 子结点=[2]
+[通过] T15.1d 单链语义 `-1 0` 解析为不建结点、传递第 0 项  —— 不建结点(传递第0项)
+[通过] T15.1e `R0 2 ; R1 2` 解析为 2 组，末组标签取右部第 1 项  —— 建结点(标签=右部第1项) 子结点=[2]
+[通过] T15.1f 非法组首记号与缺失序号都被报错（2 处）  —— 第 1 行：组首记号 "X" 不是 L / R（应为 `L 子结点…` 或 `R 序号 子结点…`）。 / 第 2 行："R" 之后缺少标签所取的右部符号下标。
+[通过] T15.1g 未给出语义行的产生式取默认动作（建左部结点、无子结点）  —— 建结点(标签=左部)
+[通过] T15.2 解析老师参考语法树（08_tiny_tree.out，81 个结点）  —— 根=0（标签 stmt-sequence）；
+[通过] T15.2b 参考树自身连通（可达 81 / 共 81）  —— 参考树根标签=stmt-sequence
+[通过] T15.2c 参考树结构签名可生成（非终结符归一化为 -1）  —— 签名长度 469，开头 (-1(-1(-1(-1(-1(-1(read(ID))(if(LT(ID)(I
+[通过] T15.6 参考树标签直方图（21 种标签）  —— ASSIGN DIVIDE EQ ID LT LTEQ MINUS MOD MULTIPLY NE NUMBER PLUS RT RTEQ if read repeat simple-exp stmt-sequence term write
+[通过] T15.5 最小文法语义动作载入（3 条）  —— 语义动作：3 条产生式有定义、共 3 个建结点组
+[通过] T15.5a 语义动作逐行还原（3 条）  —— [0]R1 0 2 [1]-1 0 [2]L 0
+[通过] T15.5b 三个单词的最小输入分析通过（语法分析：成功；8 步；语法树 5 个结点（叶 3 个）；无语法错误）  —— 语法分析通过，未发现错误。
+[通过] T15.5c 语法树从根可达全部结点（可达 5 / 共 5）  —— 根=2；括号=(PLUS(T(ID: a)) (T(ID: b)))；步骤=──────── 第 1 条语句 ──────── ⏎     0 | 状态[0] | 符号[] | 输入 ID | 第1行 | 移进 ID，转状态 1 ⏎     1 | 状态[1] | 符号[ID] | 输入 PLUS | 第1行 | 规约 2：T -> ID ⏎     2 | 状态[3] | 符号[T] | 输入 PLUS | 第1行 | 规约 1：S -> T ⏎     3 | 状态[2] | 符号[S] | 输入 PLUS | 第1行 | 移进 PLUS，转状态 4 ⏎     4 | 状态[4] | 符号[S PLUS] | 输入 ID | 第1行 | 移进 ID，转状态 1 ⏎     5 | 状态[1] | 符号[S PLUS ID] | 输入 $ | 第1行 | 规约 2：T -> ID ⏎     6 | 状态[5] | 符号[S PLUS T] | 输入 $ | 第1行 | 规约 0：S -> S PLUS T ⏎     7 | 状态[2] | 符号[S] | 输入 $ | 第1行 | 接受
+[通过] T15.5d 括号表示体现左递归链与操作符结点（(PLUS(T(ID: a)) (T(ID: b)))）
+[通过] T15.3 载入 TINY 文法（36 条产生式）  —— 产生式 36 条；非终结符 16 个；终结符 26 个；开始符号 program
+[通过] T15.3b 载入 TINY 语义动作（36 条）  —— 语义动作：36 条产生式有定义、共 36 个建结点组；错误：无
+[通过] T15.3c 由 TINY 文法构造 LALR(1) 分析表（58 状态）  —— LALR(1) 分析表：58 个状态；ACTION 表项 357 个、GOTO 表项 75 个；无冲突
+[通过] T15.3d 读取词法阶段产出的 .lex（95 个记号）  —— 单词编码文件：95 个记号、95 行源程序
+[通过] T15.3e .lex 中所有编码都能翻译成文法终结符（无法翻译的编码 0 个）  —— 未知编码：无
+[通过] T15.3f0 产生式编号对齐（增广=是、偏移=0）  —— p0=[program -> stmt-sequence]；p1=[stmt-sequence -> stmt-sequence SEMI statement]；增广符号=S'
+[通过] T15.3f TINY 样例程序语法分析通过（语法分析：成功；298 步；语法树 76 个结点（叶 69 个）；无语法错误）  —— 语法分析通过，未发现错误。
+[通过] T15.3g 语法树非空且根为开始符号 program  —— 76 个结点、叶 69 个、根标签 "program"；接受状态=6；步骤=298；首步=移进 read，转状态 4；末步=接受
+[通过] T15.6b 自建树覆盖参考树的关键字/非终结符结点（参考 21 种、自建 20 种，未覆盖 2 种）  —— 自建树标签：ASSIGN DIVIDE EQ ID LT LTEQ MINUS MOD MULTIPLY NE NUMBER PLUS RT RTEQ if program read repeat stmt-sequence write
+[通过] T15.3h 分析过程已按语句分段（识别出 6 条语句）  —— 边界符号=SEMI；含该符号的产生式 1 个；p0=[program]->[stmt-sequence]；p1=[stmt-sequence]->[stmt-sequence|SEMI|statement]
+[通过] T15.3i2 TINY 语法树连通（可达 76 / 共 76 个结点）  —— 根=75；空标签结点=0
+[通过] T15.3i 语法树可输出缩进文本（76 行）  —— 行数=76 可达=76 结点=76 根=75 根的子结点数=1 根的子=74[stmt-sequence]n=2 首行=program
+    stmt-sequence
+        stmt-sequence
+            
+[通过] T15.3j 语法树可导出 DOT（含 digraph 与 75 条边）  —— digraph SyntaxTree {
+    rankdir=TB;
+    node [fontname="Helvetica"];
+    label="TINY <U+8BED><U+6CD
+[通过] T15.3k 树布局：父结点的 x 落在其子结点区间内（76 个结点、逻辑宽 3664、高 832）
+[通过] T15.3k2 树布局：同一层的结点框两两不重叠（14 层、重叠 0 对）  —— 最大重叠 0.0 像素；逻辑宽 3664.0、高 832.0
+[通过] T15.3k2b 每个结点框都有配置的尺寸（宽 26、高 26）
+[通过] T15.3k2c 布局尺寸与叶子数匹配（叶 69 个、宽 3664 像素）
+[通过] T15.3l 语法树可输出括号表示（718 字符，括号配平）  —— (program(stmt-sequence(stmt-sequence(stmt-sequence(stmt-sequence(stmt-sequence(stmt-sequence(read(ID: xXx)) (if(LT(ID: x
+[通过] T15.3m 标签直方图覆盖 20 种标签  —— 含 ID=20 个
+[通过] T15.4 缺失结尾符号时语法分析失败并报错  —— 第 0 行：遇到 "$" 无法继续。；应为以下之一：SEMI
+[通过] T15.4b 错误信息给出了期望符号 SEMI  —— 第 0 行：遇到 "$" 无法继续。；应为以下之一：SEMI
+[通过] T15.4c 补全输入后分析通过并在 $ 上接受  —— 语法分析：成功；5 步；语法树 1 个结点（叶 1 个）；无语法错误
+[通过] T16.1 mini-C 括号编码：219=LLM( 220=RLM) 221=LMM[ 222=RMM]  —— 219=LLM 220=RLM 221=LMM 222=RMM
+[通过] T16.1b 括号名字到编码的逆映射一致  —— LLM=219 LMM=221
+[通过] T16.1c 圆括号落在 LLM、方括号落在 LMM（按字符验证）  —— ( → LLM，[ → LMM
+[通过] T16.5 TINY 语言 单词文件产出的编码都有终结符名（28 个编码、缺名 0 个）  —— 规格解析成功；编码 28 个
+[通过] T16.5b TINY 语言 编码表里的终结符都能被词法分析产出（不可达 0 个）  —— 全部可达
+[通过] T16.5 mini-C 语言 单词文件产出的编码都有终结符名（38 个编码、缺名 0 个）  —— 规格解析成功；编码 38 个
+[通过] T16.5b mini-C 语言 编码表里的终结符都能被词法分析产出（不可达 0 个）  —— 全部可达
+[通过] T16.2 载入 mini-C 文法（65 条产生式）  —— 产生式 65 条；非终结符 29 个；终结符 31 个；开始符号 program
+[通过] T16.2b 载入 mini-C 语义动作（65 条、错误 0 处）  —— 语义动作：65 条产生式有定义、共 65 个建结点组
+[通过] T16.2c mini-C 构造 LALR(1) 分析表（106 状态、1 处冲突）  —— LALR(1) 分析表：106 个状态；ACTION 表项 627 个、GOTO 表项 148 个；冲突 1 处
+[通过] T16.3 mini-C 函数定义（int main(void){return 0;}）分析通过（语法分析：成功；28 步；语法树 11 个结点（叶 7 个）；无语法错误）  —— 语法分析通过，未发现错误。
+[通过] T16.3b 语法树连通（可达 11 / 共 11）、根为开始符号 program  —— 括号表示=(program(function-definition(int) (ID: main) (void) (compound-stmt(local-definitions) (statement-list(statement-list) (return(NUM: 0))))))
+[通过] T16.3c 语法树体现 function-definition / return-stmt / type-indicator  —— (program(function-definition(int) (ID: main) (void) (compound-stmt(local-definitions) (statement-list(statement-list) (return(NUM: 0))))))
+[通过] T16.4 mini-C 数组声明（int arr[100];）分析通过（语法分析：成功；12 步；语法树 5 个结点（叶 3 个）；无语法错误）  —— 语法分析通过，未发现错误。
+[通过] T16.4b 把数组的方括号写成圆括号会被判为语法错误  —— 第 1 行：遇到 "NUM" 无法继续。；应为以下之一：double / float / int / void
+[通过] T17.1 最小文法语义动作载入（7 条）  —— 语义动作：7 条产生式有定义、共 7 个建结点组
+[通过] T17.1b 最小表达式文法分析通过（语法分析：成功；18 步；语法树 7 个结点（叶 7 个）；无语法错误）  —— 语法分析通过，未发现错误。
+[通过] T17.1c 生成 3 条四元式（四元式 3 条；临时变量 2 个、标号 0 个；告警 0 条）  ——   1  (*, 2, 3, t1) ⏎   2  (+, 1, t1, t2) ⏎   3  (:=, t2, -, x)；告警：无
+[通过] T17.1d 四元式体现优先级（先乘、后加、再赋值）  —— (*, 2, 3, t1) / (+, 1, t1, t2) / (:=, t2, -, x)
+[通过] T17.1e 四元式四个槽位都有内容（空槽补 - 而不是留空）  ——   1  (*, 2, 3, t1)
+  2  (+, 1, t1, t2)
+  3  (:=, t2, -, x)
+[通过] T17.1f 四元式可整理成表格（3 行 × 7 列）  —— 序号 / 运算符 / 运算对象1 / 运算对象2 / 结果 / 源程序行 / 说明
+[通过] T17.2 空语法树生成中间代码不崩、且给出告警  —— 语法树为空，无法生成中间代码。
+[通过] T18 256 个字节值 + 中文 + 引号 + 反斜杠，转义后为纯 ASCII（817 字符）  —— <00><01><02><03><04><05><06><07><08><09><0A><0B><0C><0D><0E><0F><10><11><12><13><14><15><1
+[通过] T18b NUL / CR / 高位字节 / 中文都被转成可见表示  —— <00><01><02><03><04><05><06><07><08><09><0A><0B><0C><0D><0E><0F><10><11><12><13><14><15><16><17><18><19><1A><1B><1C><1D><1E><1F> !\"#$%&'()*+,-./01234
+[通过] T18c 引号转成 反斜杠+引号、反斜杠转成两个反斜杠  —— 引号→\"；反斜杠→\\
+[通过] T18d 普通 ASCII 标签不被改动  —— stmt-sequence (ID: xXx)
+[通过] T17.3 参考语法树可生成四元式（四元式 40 条；临时变量 6 个、标号 11 个；告警 0 条）  ——   1  (read, -, -, xXx)
+  2  (<, xXx, yYy, t1)
+  3  (iffalse, t1, -, L1)   // 条件为假则跳到 else
+  4  (label, -, -, L3)   // repeat 循环入口
+  5  (:=, -, -, xXx)
+  6  (==, xXx, yYy, t2)
+  7  (if, t2, -, L3)   // until 条件成立则退出
+  8  (goto, -, -, L2)
+  9
+[通过] T17.4 mini-C 带形参与返回的函数分析通过（语法分析：成功；54 步；语法树 23 个结点（叶 13 个）；无语法错误）  —— 语法分析通过，未发现错误。
+[通过] T17.4b 四元式含函数边界/形参/加法/赋值/返回（四元式 6 条；临时变量 1 个、标号 0 个；告警 0 条）  ——   1  (func, int, -, f)   // 函数定义开始
+  2  (formal, int, -, a)   // 形参
+  3  (+, a, 1, t1)
+  4  (:=, t1, -, a)
+  5  (return, a, -, -)
+  6  (endfunc, -, -, f)   // 函数定义结束
+[通过] G1 主窗口已创建且标题包含系统名  —— 编译原理课程设计系统 — TINY 语言
+[通过] G1b 页签顺序与带圈数字一致（共 15 个页签）  —— ① 单词规格编辑器 | ② NFA | ③ DFA | ④ 最小化DFA | ⑤ 词法分析源程序 | ⑥ 编译与词法测试 | ⑦ 文法编辑器 | ⑧ 文法化简结果 | ⑨ First/Follow | ⑩ LR(0) DFA | ⑪ LALR(1) 项目集 | ⑫ LALR(1) 分析表 | ⑬ 语法分析过程 | ⑭ 语法树 | ⑮ 中间代码(选做)
+[通过] G2 界面流程“解析规格 → 构造 NFA”可用  —— 定义 31 个（宏 2、关键字定义 8、参与自动机 21）；NFA 67 状态 → DFA 26 状态 → 最小化 DFA 24 状态
+[通过] G3 界面流程“完整词法流水线（含编译运行）”可用  —— 页签⑤源码 364 行；页签⑥ 生成源程序 ✓　g++ 编译 ✓　运行并产出 .lex ✓（编译返回码 0，运行返回码 0）；页签⑤提示：定义 31 条；NFA 67 状态；DFA 26 状态；最小化 24 状态；生成源码 365 行；g++ 编译通过；.lex 96 行；共 364 行，11926 字节。；.lex 96 行
+[通过] G4 页签⑤已显示生成的词法分析源程序  —— 11926 字节
+[通过] G5 页签⑥已显示单词编码文件内容且末行为 EOF  —— 末行：EOF
+[通过] G6 页签⑥的 .lex 文件已落盘  —— E:/2026-02 bianyiyuanli/2026-02 编译原理课程设计/build/CompilerCourseDesign/release/output/lexbuild/tiny.lex
+[通过] G7 界面流程“载入文法→化简→First/Follow→项目集→分析表”可用  —— 化简 36 条产生式；First/Follow 16 组；项目集 58 个状态；分析表 58 个状态、冲突 0 处
+[通过] G8 页签⑫已显示分析表摘要且含状态数  —— LALR(1) 分析表：58 个状态；ACTION 表项 357 个、GOTO 表项 75 个；无冲突
+[通过] G9 页签⑫已显示冲突报告  —— 该文法在 LALR(1) 下无移进-规约冲突、无规约-规约冲突，分析表是确定的。
+[通过] G10 页签⑩⑪项目集状态数 > 10（实际 58）  —— LR(0) 项目集规范族：58 个状态、157 条转移；文法产生式 37 条
+[通过] G11 界面流程“读 .lex → LALR(1) 分析 → 建树”可用  —— 过程 305 行；语法分析：成功；298 步；语法树 76 个结点（叶 69 个）；无语法错误；树 76 个结点；语义动作 36 条
+[通过] G12 页签⑬已显示分析过程（305 行）  —— 文件：E:/2026-02 bianyiyuanli/2026-02 编译原理课程设计/build/CompilerCourseDesign/release/output/lexbuild/tiny.lex　|　语法分析：成功；298 步；语法树 76 个结点（叶 69 个）；无语法错误
+[通过] G13 页签⑭已显示语法树（76 个结点）  —— program
+    stmt-sequence
+        stmt-sequence
+            stmt-sequence
+                stmt-sequence
+                    stmt-sequence
+                      
+[通过] G14 页签⑭语法树文本含非终结符结点名  —— (program(stmt-sequence(stmt-sequence(stmt-sequence(stmt-sequence(stmt-sequence(stmt-sequence(read(ID: xXx)) (if(LT(ID: xXx) (ID: yYy)) (repeat(ASSIGN(ID: xXx) (
+[通过] G15 页签⑭已列出语法树结构定义（36 条）  —— 实际 36 条
+[通过] G14b 语法树图形视图已自动适应窗口（15.5%，内容 5329×861）  —— 是否适应比例=1 是否落在视口内=1 比例=0.155
+[通过] G14c 语法树图形视图中的内容居中显示
+[通过] G14d 放大到 300% 后可拖动浏览（内容 15987×2583）
+[通过] G16 已切换到 mini-C 语言  —— 当前语言 = MiniC
+[通过] G17 mini-C 词法流水线（生成→编译→运行 sample.mc）可用  —— 页签⑤源码 396 行；页签⑥ 生成源程序 ✓　g++ 编译 ✓　运行并产出 .lex ✓（编译返回码 0，运行返回码 0）；页签⑤提示：定义 41 条；NFA 103 状态；DFA 36 状态；最小化 31 状态；生成源码 397 行；g++ 编译通过；.lex 79 行；共 396 行，13556 字节。；.lex 79 行
+[通过] G18 mini-C 产出 .lex 且末行为 EOF（EOF）  —— E:/2026-02 bianyiyuanli/2026-02 编译原理课程设计/build/CompilerCourseDesign/release/output/lexbuild/minic.lex
+[通过] G19 mini-C 语法流水线（读 .lex → 分析 → 建树）可用  —— 过程 226 行；语法分析：成功；212 步；语法树 92 个结点（叶 52 个）；无语法错误；树 92 个结点；语义动作 65 条
+[通过] G20 mini-C 语法树非空且根为 program（92 个结点）  —— program
+    definition-list
+        definition-list
+            definition-list
+                definition-list
+        
+[通过] G21 mini-C 语法树体现函数定义、复合语句、变量定义与类型关键字  —— (program(definition-list(definition-list(definition-list(definition-list(definition-list(variable-definition(int) (ID: x)) (variable-definition(int) (ID: fact))) (variable-definition(double) (ID: y))) (variable-definition(int) (ID: arr) (NUM: 100))) (function-definition(void) (ID: test) (parameter-list(parameter(int) (ID: a)) (parameter(int) (ID: b))) (compound-stmt(local-definitions) (statement-list(statement-list(statement-list(statement-list) (expression-stmt(ASSIGN(variable(ID: a)) (NUM: 1)))) (expression-stmt(ASSIGN(variable(ID: b)) (NUM: 2)))) (return))))) (function-definition(void) (ID: main) (void) (compound-stmt(local-definitions) (statement-list(statement-list(statement-list(statement-list(statement-list) (expression-stmt(ASSIGN(variable(ID: x)) (NUM: 2)))) (expression-stmt(ASSIGN(variable(ID: y)) (NUM: 3)))) (if(RT(variable(ID: x)) (NUM: 1)) (do(expression-stmt(ASSIGN(variable(ID: fact)) (MULTIPLY(variable(ID: fact)) (variable(ID: x))))) (RTEQ(variable(ID: fact)) (NUM: 1))) (expression-stmt(ASSIGN(variable(ID: x)) (NUM: 1))))) (return))))))
+[通过] G22 页签⑮已显示四元式（27 条）  —— minic.lex　|　四元式 27 条；临时变量 3 个、标号 3 个；告警 0 条
+[通过] G23 页签⑮首行为变量定义、且含函数边界标记（首行 decl）  —— (decl, int, -, x)
+[通过] G24 页签⑮四元式文本含控制流与函数边界  ——   1  (decl, int, -, x)   // 变量定义
+  2  (decl, int, -, fact)   // 变量定义
+  3  (decl, double, -, y)   // 变量定义
+  4  (array, int, 100, arr)   // 数组定义
+  5  (func, void, -, test)   // 函数定义开始
+  6  (formal, int, -, a)   // 形参
+  7  (formal, int, -, b)   // 形参
+  8  (:=, 1, -, a)
+  9  (:=, 2, -, b)
+ 10  (return, -, -, -)
+ 11  (endfunc, -, -, test)   // 函数定义结束
+ 12  (func, void, -, main)   // 函数定义开始
+ 13  (:=, 2, 
+[通过] G25 最小化 DFA 的 DOT 为纯 ASCII（2488 字符）  —— digraph Automaton {
+  rankdir=LR;
+  node [shape=circle, fontname="Helvetica"];
+  edge [fontname="Helvetica"];
+  __start [shape=point, width=
+[通过] G25b 语法树的 DOT 为纯 ASCII（8640 字符）  —— digraph SyntaxTree {
+    rankdir=TB;
+    node [fontname="Helvetica"];
+    label="syntax tree"; labelloc=t; fontsize=14;
+    n0 [label="int",
+[通过] G26 自动机 DOT 的边标签使用字符类名（letter/digit/<other>）  —— letter=1 digit=1 <other>=1 像展开的字母表=0
+[通过] G27 状态转换表列数 = 字符类数 + 2（25 列 / 23 类）  —— 列数 25、字符类 23
+[通过] G28 字符类对照图例含 letter 的字节集  —— digit = 0-9 letter = A-Z,a-z / = / . = . _ = _ + = + - = <2D> * = * ^ = ^ < = < = = = > = > ! = ! ; = ; , = <2C> ( = ( )
+[通过] G29.1 NFA 的图里有 ε 边（虚线、标 ε）  —— ε 边 69 条 / 符号边 43 条 / 节点 103 个
+[通过] G29.2 除统一初态外每个状态都有入边（无孤立状态）  —— 节点 103 个
+[通过] G29.3 每个非接受态都有出边
+[通过] G29.4 双圈节点数等于 NFA 接受态数（含注释规则）  —— 双圈 29 个 / 接受态 29 个
+[通过] G29.5 NFA 的 DOT 除 ε 外均为可打印 ASCII  —— digraph Automaton {
+  rankdir=LR;
+  node [shape=circle, fontname="Helvetica"];
+  edge [fontname="Helvetica"];
+  __start 
+[通过] G30 NFA 的 DOT 已落盘（6986 字节）  —— E:/2026-02 bianyiyuanli/2026-02 编译原理课程设计/build/CompilerCourseDesign/release/output/dot/selftest_nfa.dot
+[通过] G31 状态栏显示当前语言与实际数据文件  —— 语言：mini-C 语言 | 数据：E:\2026-02 bianyiyuanli\2026-02 编译原理课程设计\data\minic_words.txt
+[通过] G32 状态栏不再出现“开发阶段”字样  —— 语言：mini-C 语言 | 数据：E:\2026-02 bianyiyuanli\2026-02 编译原理课程设计\data\minic_words.txt
+[通过] G33 流水线结束后状态栏的进度提示已清空
+
+合计：346 项，通过 346 项，失败 0 项
+
+慢步骤明细（>=200ms，按耗时降序；合计 66.16 秒）
+    22.87 秒    T20.0 两种字母表都能走完 NFA→DFA→最小化
+    15.38 秒    G19 mini-C 语法流水线（读 .lex → 分析 → 建树）可用
+     7.09 秒    G7 界面流程“载入文法→化简→First/Follow→项目集→分析表”可用
+     5.39 秒    T14.7b mini-C 的 LALR(1) 分析表构造成功
+     5.15 秒    T16.2c mini-C 构造 LALR(1) 分析表（106 状态、1 处冲突）
+     2.34 秒    T15.3c 由 TINY 文法构造 LALR(1) 分析表（58 状态）
+     2.30 秒    T14.6b TINY 的 LALR(1) 分析表构造成功
+     1.55 秒    G3 界面流程“完整词法流水线（含编译运行）”可用
+     1.09 秒    T10.21 方法二（switch(state)）同样编译运行成功
+     1.05 秒    T10.3 流水线规格解析与自动机构造全部成功
+     1.03 秒    G17 mini-C 词法流水线（生成→编译→运行 sample.mc）可用
+     0.92 秒    T10.23 任务书示例排版只输出一行单词 + 一行 EOF
